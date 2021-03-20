@@ -38,7 +38,13 @@ function addTask(){
         });
         
         li.querySelector("button").addEventListener("click", e => {
+            let todoId = e.target.parentNode.querySelector('input').id.split("-")[1];
+            let title = e.target.parentNode.querySelector("label").innerText;
             
+            if (confirm(`Deseja realmente excluir ${title}?`)){
+                data = data.filter(task => (task.id !== parseInt(todoId)));
+                addTask();
+            }            
         })
         
         document.querySelector(".todo").append(li);
